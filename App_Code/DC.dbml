@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="labo4-tf" Class="DCDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DIEGO_PC;Initial Catalog=labo4-tf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="labo4_tfConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Auto_Caracteristica" Member="Auto_Caracteristica">
+    <Type Name="Auto_Caracteristica">
+      <Column Name="id_auto_caracteristica" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_auto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_caracteristica" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Caracteristica_Auto_Caracteristica" Member="Caracteristica" ThisKey="id_caracteristica" OtherKey="id_caracteristica" Type="Caracteristica" IsForeignKey="true" />
+      <Association Name="ObjetoAuto_Auto_Caracteristica" Member="ObjetoAuto" ThisKey="id_auto" OtherKey="id_auto" Type="ObjetoAuto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Auto_Clasificacion" Member="Auto_Clasificacion">
+    <Type Name="Auto_Clasificacion">
+      <Column Name="id_auto_clasificacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_auto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_clasificacion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Clasificacion_Auto_Clasificacion" Member="Clasificacion" ThisKey="id_clasificacion" OtherKey="id_clasificacion" Type="Clasificacion" IsForeignKey="true" />
+      <Association Name="ObjetoAuto_Auto_Clasificacion" Member="ObjetoAuto" ThisKey="id_auto" OtherKey="id_auto" Type="ObjetoAuto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Caracteristica" Member="Caracteristica">
+    <Type Name="Caracteristica">
+      <Column Name="id_caracteristica" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="denominacion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fechAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Caracteristica_Auto_Caracteristica" Member="Auto_Caracteristica" ThisKey="id_caracteristica" OtherKey="id_caracteristica" Type="Auto_Caracteristica" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clasificacion" Member="Clasificacion">
+    <Type Name="Clasificacion">
+      <Column Name="id_clasificacion" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="denominacion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fk_clasificacion" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Clasificacion_Auto_Clasificacion" Member="Auto_Clasificacion" ThisKey="id_clasificacion" OtherKey="id_clasificacion" Type="Auto_Clasificacion" />
+      <Association Name="Usuario_Clasificacion" Member="Usuario" ThisKey="id_usuario" OtherKey="id_usuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Critica" Member="Critica">
+    <Type Name="Critica">
+      <Column Name="id_critica" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="puntaje" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="detalle" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="fechaCritica" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Foto" Member="Foto">
+    <Type Name="Foto">
+      <Column Name="id_foto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rutaArchivo" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="id_auto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ObjetoAuto_Foto" Member="ObjetoAuto" ThisKey="id_auto" OtherKey="id_auto" Type="ObjetoAuto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Noticia" Member="Noticia">
+    <Type Name="Noticia">
+      <Column Name="id_noticia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="detalle" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="fechaNoticia" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ObjetoAuto" Member="ObjetoAuto">
+    <Type Name="ObjetoAuto">
+      <Column Name="id_auto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="destacado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="fechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="color" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="[nuevo-usado]" Member="nuevo_usado" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="combustible" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="kilometraje" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="titulo" Type="System.String" DbType="VarChar(70) NOT NULL" CanBeNull="false" />
+      <Column Name="precio" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" CanBeNull="false" />
+      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="ObjetoAuto_Auto_Caracteristica" Member="Auto_Caracteristica" ThisKey="id_auto" OtherKey="id_auto" Type="Auto_Caracteristica" />
+      <Association Name="ObjetoAuto_Auto_Clasificacion" Member="Auto_Clasificacion" ThisKey="id_auto" OtherKey="id_auto" Type="Auto_Clasificacion" />
+      <Association Name="ObjetoAuto_Foto" Member="Foto" ThisKey="id_auto" OtherKey="id_auto" Type="Foto" />
+      <Association Name="Usuario_ObjetoAuto" Member="Usuario" ThisKey="id_usuario" OtherKey="id_usuario" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuario" Member="Usuario">
+    <Type Name="Usuario">
+      <Column Name="id_usuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nombreUsuario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="clave" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="nivelAcceso" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fechaAlta" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fechaBaja" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Usuario_Clasificacion" Member="Clasificacion" ThisKey="id_usuario" OtherKey="id_usuario" Type="Clasificacion" />
+      <Association Name="Usuario_ObjetoAuto" Member="ObjetoAuto" ThisKey="id_usuario" OtherKey="id_usuario" Type="ObjetoAuto" />
+    </Type>
+  </Table>
+</Database>
