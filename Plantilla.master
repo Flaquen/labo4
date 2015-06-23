@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Plantilla.master.cs" Inherits="Plantilla" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>LABORATORIO IV</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div runat="server" id="contenedor">
+            <div runat="server" id="cabecera">
+                <h1>TRABAJO FINAL - LABORATORIO IV</h1>
+                <h3>Bilyk - Guirao</h3>
+            </div>
+            <div id="menu" runat="server">
+                <ul id="menuOpc" runat="server">
+                    <li><a href="#">Pepito</a></li>
+                    <li><a href="#">Pepón</a></li>
+                    <li><a href="#">Pepitox</a></li>
+                    <li><a href="#">Pepo</a></li>
+                    <li><a href="#">Pepe</a></li>
+                </ul>
+            </div>
+            <div runat="server" id="contenido">
+                <asp:ContentPlaceHolder id="cph1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <div runat="server" id="footer">
+                <h5>&copy; Guirao & Bilyk</h5>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
